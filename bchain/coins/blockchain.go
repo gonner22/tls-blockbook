@@ -36,7 +36,7 @@ import (
 	"github.com/trezor/blockbook/bchain/coins/koto"
 	"github.com/trezor/blockbook/bchain/coins/liquid"
 	"github.com/trezor/blockbook/bchain/coins/litecoin"
-	"github.com/trezor/blockbook/bchain/coins/meowcoin"
+	"github.com/trezor/blockbook/bchain/coins/mewc"
 	"github.com/trezor/blockbook/bchain/coins/monacoin"
 	"github.com/trezor/blockbook/bchain/coins/monetaryunit"
 	"github.com/trezor/blockbook/bchain/coins/myriad"
