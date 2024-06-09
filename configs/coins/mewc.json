@@ -12,17 +12,17 @@
       "blockbook_public": 8159
     },
     "ipc": {
-      "rpc_url_template": "http://127.0.0.1:{{.Ports.BackendRPC}}",
+      "rpc_url_template": "http://0.0.0.0:{{.Ports.BackendRPC}}",
       "rpc_user": "rpc",
       "rpc_pass": "rpc",
       "rpc_timeout": 25,
-      "message_queue_binding_template": "tcp://127.0.0.1:{{.Ports.BackendMessageQueue}}"
+      "message_queue_binding_template": "tcp://0.0.0.0:{{.Ports.BackendMessageQueue}}"
     },
     "backend": {
       "package_name": "backend-mewc",
       "package_revision": "satoshilabs-1",
       "system_user": "mewc",
-      "version": "1.1.2",
+      "version": "2.0.4",
       "binary_url": "https://github.com/Meowcoin-Foundation/Meowcoin/releases/download/Meow-v2.0.4/meowcoin-2.0.4-1733b19cc-x86_64-linux-gnu.tar.gz",
       "verification_type": "sha256",
       "verification_source": "8d40743f9eb8664c0132585a4098ca5d1cbd85ac8df9eadbd0d1d3460932f28d",
