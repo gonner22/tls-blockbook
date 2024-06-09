@@ -38,7 +38,7 @@ type MEWCParser struct {
 }
 
 // NewMEWCParser returns new MEWCParser instance
-func NewMEWCParser(params *chaincfg.Params, c *btc.Configuration) *AIPGParser {
+func NewMEWCParser(params *chaincfg.Params, c *btc.Configuration) *MEWCParser {
 	return &MEWCParser{
 		BitcoinLikeParser: btc.NewBitcoinLikeParser(params, c),
 		baseparser:        &bchain.BaseParser{},
