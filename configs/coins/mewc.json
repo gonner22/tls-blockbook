@@ -1,0 +1,67 @@
+{
+    "coin": {
+      "name": "MEWC",
+      "shortcut": "MEWC",
+      "label": "MEWC",
+      "alias": "mewc"
+    },
+    "ports": {
+      "backend_rpc": 9788,
+      "backend_message_queue": 28359,
+      "blockbook_internal": 8059,
+      "blockbook_public": 8159
+    },
+    "ipc": {
+      "rpc_url_template": "http://127.0.0.1:{{.Ports.BackendRPC}}",
+      "rpc_user": "rpc",
+      "rpc_pass": "rpc",
+      "rpc_timeout": 25,
+      "message_queue_binding_template": "tcp://127.0.0.1:{{.Ports.BackendMessageQueue}}"
+    },
+    "backend": {
+      "package_name": "backend-mewc",
+      "package_revision": "satoshilabs-1",
+      "system_user": "mewc",
+      "version": "1.1.2",
+      "binary_url": "https://github.com/Meowcoin-Foundation/Meowcoin/releases/download/Meow-v2.0.4/meowcoin-2.0.4-1733b19cc-x86_64-linux-gnu.tar.gz",
+      "verification_type": "sha256",
+      "verification_source": "8d40743f9eb8664c0132585a4098ca5d1cbd85ac8df9eadbd0d1d3460932f28d",
+      "extract_command": "tar -C backend --strip 1 -xf",
+      "exclude_files": [
+        "bin/meowcoin-qt"
+      ],
+      "exec_command_template": "{{.Env.BackendInstallPath}}/{{.Coin.Alias}}/bin/meowcoind -datadir={{.Env.BackendDataPath}}/{{.Coin.Alias}}/backend -conf={{.Env.BackendInstallPath}}/{{.Coin.Alias}}/{{.Coin.Alias}}.conf -pid=/run/{{.Coin.Alias}}/{{.Coin.Alias}}.pid",
+      "logrotate_files_template": "{{.Env.BackendDataPath}}/{{.Coin.Alias}}/backend/*.log",
+      "postinst_script_template": "",
+      "service_type": "forking",
+      "service_additional_params_template": "",
+      "protect_memory": true,
+      "mainnet": true,
+      "server_config_file": "bitcoin_like.conf",
+      "client_config_file": "bitcoin_like_client.conf",
+      "additional_params": {
+        "deprecatedrpc": "estimatefee"
+      }
+    },
+    "blockbook": {
+      "package_name": "blockbook-mewc",
+      "system_user": "blockbook-mewc",
+      "internal_binding_template": ":{{.Ports.BlockbookInternal}}",
+      "public_binding_template": ":{{.Ports.BlockbookPublic}}",
+      "explorer_url": "",
+      "additional_params": "",
+      "block_chain": {
+        "parse": true,
+        "mempool_workers": 8,
+        "mempool_sub_workers": 2,
+        "block_addresses_to_keep": 300,
+        "xpub_magic": 76067358,
+        "slip44": 175,
+        "additional_params": {}
+      }
+    },
+    "meta": {
+      "package_maintainer": "MEWC",
+      "package_maintainer_email": "management@mewccrypto.com"
+    }
+  }
