@@ -1,4 +1,4 @@
-package mewc
+package tls
 
 import (
 	"github.com/martinboehm/btcd/wire"
@@ -9,8 +9,8 @@ import (
 
 // magic numbers
 const (
-	MainnetMagic wire.BitcoinNet = 0x4357454d
-	TestnetMagic wire.BitcoinNet = 0x6377656d
+	MainnetMagic wire.BitcoinNet = 0x454c4554
+	TestnetMagic wire.BitcoinNet = 0x544E5652
 )
 
 // chain parameters
@@ -22,24 +22,24 @@ var (
 func init() {
 	MainNetParams = chaincfg.MainNetParams
 	MainNetParams.Net = MainnetMagic
-	MainNetParams.PubKeyHashAddrID = []byte{50}
-	MainNetParams.ScriptHashAddrID = []byte{122}
+	MainNetParams.PubKeyHashAddrID = []byte{66}
+	MainNetParams.ScriptHashAddrID = []byte{127}
 
 	TestNetParams = chaincfg.TestNet3Params
 	TestNetParams.Net = TestnetMagic
-	TestNetParams.PubKeyHashAddrID = []byte{109}
-	TestNetParams.ScriptHashAddrID = []byte{124}
+	TestNetParams.PubKeyHashAddrID = []byte{111}
+	TestNetParams.ScriptHashAddrID = []byte{196}
 }
 
 // MewcParser handle
-type MEWCParser struct {
+type TLSParser struct {
 	*btc.BitcoinLikeParser
 	baseparser *bchain.BaseParser
 }
 
-// NewMEWCParser returns new MEWCParser instance
-func NewMEWCParser(params *chaincfg.Params, c *btc.Configuration) *MEWCParser {
-	return &MEWCParser{
+// NewTLSParser returns new TLSParser instance
+func NewTLSParser(params *chaincfg.Params, c *btc.Configuration) *TLSParser {
+	return &TLSParser{
 		BitcoinLikeParser: btc.NewBitcoinLikeParser(params, c),
 		baseparser:        &bchain.BaseParser{},
 	}
@@ -65,11 +65,11 @@ func GetChainParams(chain string) *chaincfg.Params {
 }
 
 // PackTx packs transaction to byte array using protobuf
-func (p *MEWCParser) PackTx(tx *bchain.Tx, height uint32, blockTime int64) ([]byte, error) {
+func (p *TLSParser) PackTx(tx *bchain.Tx, height uint32, blockTime int64) ([]byte, error) {
 	return p.baseparser.PackTx(tx, height, blockTime)
 }
 
 // UnpackTx unpacks transaction from protobuf byte array
-func (p *MEWCParser) UnpackTx(buf []byte) (*bchain.Tx, uint32, error) {
+func (p *TLSParser) UnpackTx(buf []byte) (*bchain.Tx, uint32, error) {
 	return p.baseparser.UnpackTx(buf)
 }

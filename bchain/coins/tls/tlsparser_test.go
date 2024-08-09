@@ -1,6 +1,6 @@
 //go:build unittest
 
-package mewc
+package tls
 
 import (
 	"encoding/hex"
@@ -126,7 +126,7 @@ func Test_PackTx(t *testing.T) {
 		tx        bchain.Tx
 		height    uint32
 		blockTime int64
-		parser    *MEWCParser
+		parser    *TLSParser
 	}
 	tests := []struct {
 		name    string
@@ -135,23 +135,23 @@ func Test_PackTx(t *testing.T) {
 		wantErr bool
 	}{
 		{
-			name: "mewc-1",
+			name: "tls-1",
 			args: args{
 				tx:        testTx1,
 				height:    657540,
 				blockTime: 1554837703,
-				parser:    NewMEWCParser(GetChainParams("main"), &btc.Configuration{}),
+				parser:    NewTLSParser(GetChainParams("main"), &btc.Configuration{}),
 			},
 			want:    testTxPacked1,
 			wantErr: false,
 		},
 		{
-			name: "mewc-2",
+			name: "tls-2",
 			args: args{
 				tx:        testTx2,
 				height:    657540,
 				blockTime: 1554837703,
-				parser:    NewMEWCParser(GetChainParams("main"), &btc.Configuration{}),
+				parser:    NewTLSParser(GetChainParams("main"), &btc.Configuration{}),
 			},
 			want:    testTxPacked2,
 			wantErr: false,
@@ -175,7 +175,7 @@ func Test_PackTx(t *testing.T) {
 func Test_UnpackTx(t *testing.T) {
 	type args struct {
 		packedTx string
-		parser   *MEWCParser
+		parser   *TLSParser
 	}
 	tests := []struct {
 		name    string
@@ -185,20 +185,20 @@ func Test_UnpackTx(t *testing.T) {
 		wantErr bool
 	}{
 		{
-			name: "mewc-1",
+			name: "tls-1",
 			args: args{
 				packedTx: testTxPacked1,
-				parser:   NewMEWCParser(GetChainParams("main"), &btc.Configuration{}),
+				parser:   NewTLSParser(GetChainParams("main"), &btc.Configuration{}),
 			},
 			want:    &testTx1,
 			want1:   657540,
 			wantErr: false,
 		},
 		{
-			name: "mewc-2",
+			name: "tls-2",
 			args: args{
 				packedTx: testTxPacked2,
-				parser:   NewMEWCParser(GetChainParams("main"), &btc.Configuration{}),
+				parser:   NewTLSParser(GetChainParams("main"), &btc.Configuration{}),
 			},
 			want:    &testTx2,
 			want1:   657540,

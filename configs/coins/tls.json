@@ -1,12 +1,12 @@
 {
     "coin": {
-      "name": "MEWC",
-      "shortcut": "MEWC",
-      "label": "MEWC",
-      "alias": "mewc"
+      "name": "TLS",
+      "shortcut": "TLS",
+      "label": "TLS",
+      "alias": "tls"
     },
     "ports": {
-      "backend_rpc": 9788,
+      "backend_rpc": 8766,
       "backend_message_queue": 28359,
       "blockbook_internal": 8059,
       "blockbook_public": 8159
@@ -19,18 +19,18 @@
       "message_queue_binding_template": "tcp://127.0.0.1:{{.Ports.BackendMessageQueue}}"
     },
     "backend": {
-      "package_name": "backend-mewc",
+      "package_name": "backend-tls",
       "package_revision": "satoshilabs-1",
-      "system_user": "mewc",
-      "version": "2.0.4",
-      "binary_url": "https://github.com/Meowcoin-Foundation/Meowcoin/releases/download/Meow-v2.0.4/meowcoin-2.0.4-1733b19cc-x86_64-linux-gnu.tar.gz",
+      "system_user": "tls",
+      "version": "2.1.4",
+      "binary_url": "https://github.com/Telestai-Project/telestai/releases/download/2.1.4/telestai-2.1.4-dadd50cad-x86_64-linux-gnu.tar.gz",
       "verification_type": "sha256",
-      "verification_source": "8d40743f9eb8664c0132585a4098ca5d1cbd85ac8df9eadbd0d1d3460932f28d",
+      "verification_source": "a005ce67ae12155c4e7d080cc109ab0b87549ac6a2e96ca26d214d62c5016511",
       "extract_command": "tar -C backend --strip 1 -xf",
       "exclude_files": [
-        "bin/meowcoin-qt"
+        "bin/telestai-qt"
       ],
-      "exec_command_template": "{{.Env.BackendInstallPath}}/{{.Coin.Alias}}/bin/meowcoind -datadir={{.Env.BackendDataPath}}/{{.Coin.Alias}}/backend -conf={{.Env.BackendInstallPath}}/{{.Coin.Alias}}/{{.Coin.Alias}}.conf -pid=/run/{{.Coin.Alias}}/{{.Coin.Alias}}.pid",
+      "exec_command_template": "{{.Env.BackendInstallPath}}/{{.Coin.Alias}}/bin/telestaid -datadir={{.Env.BackendDataPath}}/{{.Coin.Alias}}/backend -conf={{.Env.BackendInstallPath}}/{{.Coin.Alias}}/{{.Coin.Alias}}.conf -pid=/run/{{.Coin.Alias}}/{{.Coin.Alias}}.pid",
       "logrotate_files_template": "{{.Env.BackendDataPath}}/{{.Coin.Alias}}/backend/*.log",
       "postinst_script_template": "",
       "service_type": "forking",
@@ -44,8 +44,8 @@
       }
     },
     "blockbook": {
-      "package_name": "blockbook-mewc",
-      "system_user": "blockbook-mewc",
+      "package_name": "blockbook-tls",
+      "system_user": "blockbook-tls",
       "internal_binding_template": ":{{.Ports.BlockbookInternal}}",
       "public_binding_template": ":{{.Ports.BlockbookPublic}}",
       "explorer_url": "",
@@ -61,7 +61,7 @@
       }
     },
     "meta": {
-      "package_maintainer": "MEWC",
-      "package_maintainer_email": "management@mewccrypto.com"
+      "package_maintainer": "TLS",
+      "package_maintainer_email": "management@tlscrypto.com"
     }
   }

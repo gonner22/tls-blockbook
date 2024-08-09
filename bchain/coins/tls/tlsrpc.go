@@ -1,4 +1,4 @@
-package mewc
+package tls
 
 import (
 	"encoding/json"
@@ -9,19 +9,19 @@ import (
 	"github.com/trezor/blockbook/bchain/coins/btc"
 )
 
-// MEWCRPC is an interface to JSON-RPC bitcoind service.
-type MEWCRPC struct {
+// TLSRPC is an interface to JSON-RPC bitcoind service.
+type TLSRPC struct {
 	*btc.BitcoinRPC
 }
 
-// NewMEWCRPC returns new MEWCRPC instance.
-func NewMEWCRPC(config json.RawMessage, pushHandler func(bchain.NotificationType)) (bchain.BlockChain, error) {
+// NewTLSRPC returns new TLSRPC instance.
+func NewTLSRPC(config json.RawMessage, pushHandler func(bchain.NotificationType)) (bchain.BlockChain, error) {
 	b, err := btc.NewBitcoinRPC(config, pushHandler)
 	if err != nil {
 		return nil, err
 	}
 
-	s := &MEWCRPC{
+	s := &TLSRPC{
 		b.(*btc.BitcoinRPC),
 	}
 	s.RPCMarshaler = btc.JSONMarshalerV2{}
@@ -30,8 +30,8 @@ func NewMEWCRPC(config json.RawMessage, pushHandler func(bchain.NotificationType
 	return s, nil
 }
 
-// Initialize initializes MEWCRPC instance.
-func (b *MEWCRPC) Initialize() error {
+// Initialize initializes TLSRPC instance.
+func (b *TLSRPC) Initialize() error {
 	ci, err := b.GetChainInfo()
 	if err != nil {
 		return err
@@ -40,7 +40,7 @@ func (b *MEWCRPC) Initialize() error {
 	params := GetChainParams(chainName)
 
 	// always create parser
-	b.Parser = NewMEWCParser(params, b.ChainConfig)
+	b.Parser = NewTLSParser(params, b.ChainConfig)
 
 	// parameters for getInfo request
 	if params.Net == MainnetMagic {
@@ -57,7 +57,7 @@ func (b *MEWCRPC) Initialize() error {
 }
 
 // GetBlock returns block with given hash.
-func (b *MEWCRPC) GetBlock(hash string, height uint32) (*bchain.Block, error) {
+func (b *TLSRPC) GetBlock(hash string, height uint32) (*bchain.Block, error) {
 	var err error
 	if hash == "" && height > 0 {
 		hash, err = b.GetBlockHash(height)
@@ -102,6 +102,6 @@ func (b *MEWCRPC) GetBlock(hash string, height uint32) (*bchain.Block, error) {
 
 // GetTransactionForMempool returns a transaction by the transaction ID.
 // It could be optimized for mempool, i.e. without block time and confirmations
-func (b *MEWCRPC) GetTransactionForMempool(txid string) (*bchain.Tx, error) {
+func (b *TLSRPC) GetTransactionForMempool(txid string) (*bchain.Tx, error) {
 	return b.GetTransaction(txid)
 }
