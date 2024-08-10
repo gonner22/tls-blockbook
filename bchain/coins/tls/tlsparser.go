@@ -31,7 +31,7 @@ func init() {
 	TestNetParams.ScriptHashAddrID = []byte{196}
 }
 
-// MewcParser handle
+// tlsParser handle
 type TLSParser struct {
 	*btc.BitcoinLikeParser
 	baseparser *bchain.BaseParser
