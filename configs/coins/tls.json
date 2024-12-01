@@ -22,10 +22,10 @@
       "package_name": "backend-tls",
       "package_revision": "satoshilabs-1",
       "system_user": "tls",
-      "version": "2.1.4",
-      "binary_url": "https://github.com/Telestai-Project/telestai/releases/download/2.1.4/telestai-2.1.4-dadd50cad-x86_64-linux-gnu.tar.gz",
+      "version": "2.1.7",
+      "binary_url": "https://github.com/Telestai-Project/telestai/releases/download/2.1.7/telestai-2.1.7-ddd6a0859-x86_64-linux-gnu.tar.gz",
       "verification_type": "sha256",
-      "verification_source": "a005ce67ae12155c4e7d080cc109ab0b87549ac6a2e96ca26d214d62c5016511",
+      "verification_source": "2ffd22cb2763ab8baa081b6ee0818e4d4c4358bd417044ad4981f18247eb753f",
       "extract_command": "tar -C backend --strip 1 -xf",
       "exclude_files": [
         "bin/telestai-qt"
